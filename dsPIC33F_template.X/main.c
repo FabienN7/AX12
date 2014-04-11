@@ -42,8 +42,7 @@ _FICD(ICS_PGD1 & JTAGEN_OFF);
 
 
 /******************************************************************************/
-/* Main Program                                                               */
-
+/*********************************Main Program*********************************/
 /******************************************************************************/
 
 int16_t main(void) {
@@ -51,35 +50,22 @@ int16_t main(void) {
     ConfigureOscillator();
     InitApp();
     responseReadyAX = 0;
-    // time
-    int t1 = 100;
-    int t2 = 25;
+
 
     while (1) {
-        //  PutAX(AX_BROADCAST, AX_LED, 1);
-        //  PutAX(AX_BROADCAST, AX_GOAL_POSITION, 100);
-        //  PutAX(AX_BROADCAST, AX_BAUD_RATE, 34);
-        //  PutAX(AX_BROADCAST, AX_ID, 42);
 
-        //  PutAX(AX_BROADCAST, AX_TORQUE_LIMIT, 500);
-        // PutAX(12, AX_GOAL_POSITION, 400);
-        // __delay_ms(t1)
         init_bras(1);
         init_bras(2);
         __delay_ms(1000);
 
-        catch_bras(2);
-        
-        stock_bras(2);
-        face1(2);
+        catch_bras(1);
 
-        
+        stock_bras(1);
+
+        //face1(1);
+   
         led1 = !led1;
         __delay_ms(1000);
-
-
-
-
     }
 }
 
