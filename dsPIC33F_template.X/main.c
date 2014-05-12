@@ -20,6 +20,7 @@
 #include "ax12.h"
 #include <uart.h>
 #include <delay.h>
+#include "actions_ax12.h"
 /******************************************************************************/
 /* Global Variable Declaration                                                */
 /******************************************************************************/
@@ -51,20 +52,20 @@ int16_t main(void) {
     InitApp();
     responseReadyAX = 0;
 
-
     while (1) {
 
-        init_bras(1);
-        init_bras(2);
-        __delay_ms(1000);
+        init_arm(1);
+        __delay_ms(100);
+        init_arm(2);
+        __delay_ms(100);
 
-        catch_bras(1);
+        catch_arm(1);
 
-        stock_bras(1);
 
-        //face1(1);
+          pull_arm(1);
+
    
-        led1 = !led1;
+        // led1 = !led1;
         __delay_ms(1000);
     }
 }

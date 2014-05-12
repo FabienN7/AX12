@@ -8,9 +8,7 @@
 #ifndef ACTIONS_AX12_H
 #define	ACTIONS_AX12_H
 
-int S1;
-int S2;
-int S3;
+
 
 #define SD1             4
 #define SD2             13
@@ -21,10 +19,11 @@ int S3;
 #define SG3             2
 
 void choose_arm(int);
-void init_bras(int);
-void catch_bras(int);
-void stock_bras(int);
-void face1(int);
-void face2(int);
+void init_arm(int);
+void catch_arm(int);
+void stock_arm(int);
+void pull_arm(int);
+void push_arm(int);
+void launch_net(int);
 #endif	/* ACTIONS_AX12_H */
 

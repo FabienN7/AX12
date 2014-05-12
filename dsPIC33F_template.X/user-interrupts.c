@@ -1,16 +1,16 @@
 /*
-* Template dsPIC33F
-* Compiler : Microchip xC16
-* µC : 33FJ64MC802
-* Juillet 2012
-*    ____________      _           _
-*   |___  /| ___ \    | |         | |
-*      / / | |_/ /___ | |__   ___ | |_
-*     / /  |    // _ \| '_ \ / _ \| __|
-*    / /   | |\ \ (_) | |_) | (_) | |_
-*   /_/    |_| \_\___/|____/ \___/'\__|
-*			      7robot.fr
-*/
+ * Template dsPIC33F
+ * Compiler : Microchip xC16
+ * µC : 33FJ64MC802
+ * Juillet 2012
+ *    ____________      _           _
+ *   |___  /| ___ \    | |         | |
+ *      / / | |_/ /___ | |__   ___ | |_
+ *     / /  |    // _ \| '_ \ / _ \| __|
+ *    / /   | |\ \ (_) | |_) | (_) | |_
+ *   /_/    |_| \_\___/|____/ \___/'\__|
+ *			      7robot.fr
+ */
 
 /******************************************************************************/
 /* Files to Include                                                           */
@@ -29,48 +29,45 @@
 //#define BAUDRATEAX12 9600
 #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
 
-
-void ConfigureOscillator(void)
-{
+void ConfigureOscillator(void) {
     // Configure PLL prescaler, PLL postscaler, PLL divisor
     PLLFBDbits.PLLDIV = 150; // M=43
     CLKDIVbits.PLLPOST = 0; // N1=2
-    CLKDIVbits.PLLPRE  = 5; // N2=2
+    CLKDIVbits.PLLPRE = 5; // N2=2
     // Fosc = M/(N1.N2)*Fin
 }
 
-void InitApp(void)
-{
+void InitApp(void) {
     //pin de la LED en sortie
     //_TRISA0 = 0;
     _TRISA2 = 0;
     //Si on a un interrupteur sur la pin RB5 (par exemple), on la met en entrée
-   // _TRISB5 = 1;
+    // _TRISB5 = 1;
     //Et on active la pullup qui va bien (registres CNPU1 et CNPU2)
-   // _CN27PUE = 1;
+    // _CN27PUE = 1;
     _ODCB5 = 1; // Open drain sur la pin RB5(pour les AX12)
     // activation de la priorité des interruptions
     _NSTDIS = 0;
-// cf datasheet compilateur
-     OpenUART2(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
-        & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
-        & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE & UART_BRGH_SIXTEEN
-        & UART_NO_PAR_8BIT & UART_1STOPBIT,
-          UART_INT_TX_BUF_EMPTY & UART_IrDA_POL_INV_ZERO
-        & UART_SYNC_BREAK_DISABLED & UART_TX_ENABLE & UART_TX_BUF_NOT_FUL & UART_INT_RX_CHAR
-        & UART_ADR_DETECT_DIS & UART_RX_OVERRUN_CLEAR,
-          BRGVALAX12);
+    // cf datasheet compilateur
+    OpenUART2(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
+            & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
+            & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE & UART_BRGH_SIXTEEN
+            & UART_NO_PAR_8BIT & UART_1STOPBIT,
+            UART_INT_TX_BUF_EMPTY & UART_IrDA_POL_INV_ZERO
+            & UART_SYNC_BREAK_DISABLED & UART_TX_ENABLE & UART_TX_BUF_NOT_FUL & UART_INT_RX_CHAR
+            & UART_ADR_DETECT_DIS & UART_RX_OVERRUN_CLEAR,
+            BRGVALAX12);
 
     ConfigIntUART2(UART_RX_INT_PR4 & UART_RX_INT_EN
-                 & UART_TX_INT_PR4 & UART_TX_INT_DIS);
+            & UART_TX_INT_PR4 & UART_TX_INT_DIS);
 
 
 
     OpenTimer23(T2_ON &
-                    T2_IDLE_CON &
-                    T2_GATE_OFF &
-                    T2_PS_1_1 &
-                    T2_SOURCE_INT, 0x01 );
+            T2_IDLE_CON &
+            T2_GATE_OFF &
+            T2_PS_1_1 &
+            T2_SOURCE_INT, 0x01);
 
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
 }
@@ -141,20 +138,20 @@ void InitApp(void)
 
 /* TODO Add interrupt routine code here. */
 
-void __attribute__((interrupt, auto_psv)) _T2Interrupt(void)
-{
-    led1 = !led1;    // On bascule l'état de la LED
-    _T2IF = 0;      // On baisse le FLAG
+void __attribute__((interrupt, auto_psv)) _T2Interrupt(void) {
+    led1 = !led1; // On bascule l'état de la LED
+    _T2IF = 0; // On baisse le FLAG
 }
+
 /*
 void __attribute__((interrupt,auto_psv)) _T5Interrupt(void)
 {
     _T5IF = 0;
     GetAX(num_ax, data);
 }
-*/
+ */
 
-void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
+void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void) {
 
     led1 = led1 ^ 1;
     InterruptAX();
@@ -163,13 +160,12 @@ void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
 }
 
 /*************************************************
-* TX Interrupt *
-*************************************************/
+ * TX Interrupt *
+ *************************************************/
 
 
-void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void)
-{
+void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void) {
 
-   _U2TXIF = 0; // clear TX interrupt flag
+    _U2TXIF = 0; // clear TX interrupt flag
 
 }
