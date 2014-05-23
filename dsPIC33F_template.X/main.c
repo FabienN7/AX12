@@ -52,21 +52,24 @@ int16_t main(void) {
     InitApp();
     responseReadyAX = 0;
 
+
+         PutAX(15, AX_CW_ANGLE_LIMIT, 0);
+         PutAX(15, AX_CCW_ANGLE_LIMIT, 0);
+         
     while (1) {
 
-        init_arm(1);
-        __delay_ms(100);
-        init_arm(2);
-        __delay_ms(100);
+//PutAX(254, AX_LED, 6500);
 
-        catch_arm(1);
+ //PutAX(AX_BROADCAST, AX_ID, 15);
 
 
-          pull_arm(1);
+  PutAX(15, AX_MOVING_SPEED, 0b11111111111);
 
-   
-        // led1 = !led1;
-        __delay_ms(1000);
+
+
+
+    __delay_ms(1000);
+
     }
 }
 

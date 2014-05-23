@@ -10,11 +10,11 @@
 
 
 
-#define SD1             4
+#define SD1             18
 #define SD2             13
 #define SD3             17
 
-#define SG1             12
+#define SG1             18
 #define SG2             42
 #define SG3             2
 

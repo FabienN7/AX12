@@ -27,6 +27,7 @@
 /******************************************************************************/
 #define BAUDRATEAX12 57600
 //#define BAUDRATEAX12 9600
+
 #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
 
 void ConfigureOscillator(void) {
