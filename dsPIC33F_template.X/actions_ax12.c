@@ -24,70 +24,70 @@ void choose_arm(int arm) {
 
 void init_arm(int arm) {
 
-    PutAX(S1, AX_TORQUE_LIMIT, 650);
+    PutAX(rab, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
-    PutAX(S2, AX_TORQUE_LIMIT, 650);
+    PutAX(pince, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
-    PutAX(S3, AX_TORQUE_LIMIT, 650);
-    __delay_ms(40);
-
-    PutAX(S1, AX_MOVING_SPEED, 650);
-    __delay_ms(40);
-    PutAX(S2, AX_MOVING_SPEED, 650);
-    __delay_ms(40);
-    PutAX(S3, AX_MOVING_SPEED, 650);
+    PutAX(asc, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
 
-    PutAX(S1, AX_GOAL_POSITION, 512);
+    PutAX(rab, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+    PutAX(pince, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+    PutAX(asc, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+
+    PutAX(rab, AX_GOAL_POSITION, 512);
     __delay_ms(100);
-    PutAX(S2, AX_GOAL_POSITION, 205);
+    PutAX(pince, AX_GOAL_POSITION, 205);
     __delay_ms(100);
-    PutAX(S3, AX_GOAL_POSITION, 205);
+    PutAX(asc, AX_GOAL_POSITION, 205);
     __delay_ms(500);
 
 }
 
 void charg_gobelet(void)
 {
-    PutAX(S1, AX_TORQUE_LIMIT, 650);
+    PutAX(rab, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
-    PutAX(S2, AX_TORQUE_LIMIT, 650);
+    PutAX(pince, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
-    PutAX(S3, AX_TORQUE_LIMIT, 650);
+    PutAX(asc, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
-    PutAX(S4, AX_TORQUE_LIMIT, 650);
-    __delay_ms(40);
-
-    PutAX(S1, AX_MOVING_SPEED, 650);
-    __delay_ms(40);
-    PutAX(S2, AX_MOVING_SPEED, 650);
-    __delay_ms(40);
-    PutAX(S3, AX_MOVING_SPEED, 650);
-    __delay_ms(40);
-    PutAX(S4, AX_MOVING_SPEED, 650);
+    PutAX(tub, AX_TORQUE_LIMIT, 650);
     __delay_ms(40);
 
-    PutAX(S1,AX_GOAL_POSITION,00); //rabat la piece
+    PutAX(rab, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+    PutAX(pince, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+    PutAX(asc, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+    PutAX(tub, AX_MOVING_SPEED, 650);
+    __delay_ms(40);
+
+    PutAX(rab,AX_GOAL_POSITION,00); //rabat la piece
     __delay_ms(100);
-    PutAX(S1,AX_GOAL_POSITION,00); //reouvre
+    PutAX(rab,AX_GOAL_POSITION,00); //reouvre
     __delay_ms(100);
-    PutAX(S2,AX_GOAL_POSITION,00); //ouvre la pince
+    PutAX(pince,AX_GOAL_POSITION,00); //ouvre la pince
     __delay_ms(100);
-    PutAX(S3,AX_GOAL_POSITION,00); //descent la pince
+    PutAX(asc,AX_GOAL_POSITION,00); //descent la pince
     __delay_ms(100);
-    PutAX(S2,AX_GOAL_POSITION,00); //referme la pince
+    PutAX(pince,AX_GOAL_POSITION,00); //referme la pince
     __delay_ms(100);
-    PutAX(S3,AX_GOAL_POSITION,00); //remonte a moitié la piece et bloque
+    PutAX(asc,AX_GOAL_POSITION,00); //remonte a moitié la piece et bloque
     __delay_ms(100);
-    PutAX(S4,AX_GOAL_POSITION,00); //reouvre legerement le porte gobelet
+    PutAX(tub,AX_GOAL_POSITION,00); //reouvre legerement le porte gobelet
     __delay_ms(100);
-    PutAX(S3,AX_GOAL_POSITION,00); //remonte la pince a max
+    PutAX(asc,AX_GOAL_POSITION,00); //remonte la pince a max
     __delay_ms(100);
-    PutAX(S4,AX_GOAL_POSITION,00); //referme le porte gob
+    PutAX(tub,AX_GOAL_POSITION,00); //referme le porte gob
     __delay_ms(100);
-    PutAX(S2,AX_GOAL_POSITION,00); // reouvre la pince
+    PutAX(pince,AX_GOAL_POSITION,00); // reouvre la pince
     __delay_ms(100);
-    PutAX(S3,AX_GOAL_POSITION,00); // la redescent a mi hauteur
+    PutAX(asc,AX_GOAL_POSITION,00); // la redescent a mi hauteur
     __delay_ms(100);
 
 

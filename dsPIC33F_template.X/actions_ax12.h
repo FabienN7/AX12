@@ -10,10 +10,10 @@
 
 
 
-#define S1             1  // le rabateur
-#define S2             2  // la pince
-#define S3             3  // l'ascenceur
-#define S4             4  // le porte gobelet
+#define rab           7  // le rabateur
+#define pince          9  // la pince
+#define asc           11 // l'ascenceur
+#define tub            1    // le reservoir
 
 void choose_arm(int);
 void init_arm(int);
