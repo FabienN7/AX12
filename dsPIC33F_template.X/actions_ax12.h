@@ -10,20 +10,14 @@
 
 
 
-#define SD1             18
-#define SD2             13
-#define SD3             17
-
-#define SG1             18
-#define SG2             42
-#define SG3             2
+#define S1             1  // le rabateur
+#define S2             2  // la pince
+#define S3             3  // l'ascenceur
+#define S4             4  // le porte gobelet
 
 void choose_arm(int);
 void init_arm(int);
-void catch_arm(int);
-void stock_arm(int);
-void pull_arm(int);
-void push_arm(int);
-void launch_net(int);
+void charg_gobelet(void);
+
 #endif	/* ACTIONS_AX12_H */
 
